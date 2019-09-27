@@ -1,0 +1,34 @@
+<!--pages/searchpage/searchpage.wxml-->
+<!-- 顶部nav -->
+<nav-bar navbar-data='{{navbarData}}'></nav-bar>
+<view class='searchpage' style='padding-top:{{height+40}}px;overflow:{{searchList.length>0?"hidden":"auto"}}'>
+  <view class='top' style='top:{{height+40}}px'>
+    <view class='search-bar'>
+      <icon class='iconfont icon-search' style="display:flex;color:#5BDE82;margin-right:12rpx"></icon>
+      <input placeholder="搜索" bindinput="handleSearch"></input>
+      <!-- <view class='_placeholder' bindtap="handleFocus">
+            <icon class='iconfont icon-search' style="display:flex;color:#5BDE82;margin-right:8rpx"></icon>
+            搜索
+          </view> -->
+    </view>
+  </view>
+  <view class='search-list' wx:if='{{searchList.length>0}}'>
+    <scroll-view class='search-pannel' scroll-y>
+      <block wx:for="{{searchList}}" wx:key='{{index}}' >
+        <view class='s-list-item' data-location='{{item.location}}' bindtap="handleSearchResult">
+          <view class='s-left'>
+            <view class='s-l-top'>{{item.name}}</view>
+            <view class='s-l-bot'>{{item.district}}</view>
+          </view>
+          <view class='s-right'>
+            <icon class='iconfont icon-weizhi' style='color:#36B9FD;display:flex;font-size:42rpx'></icon>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+  <view class='store-list'>
+
+    <shop-card class='shop-item' wx:key="{{index}}" wx:for="{{storeList}}" shop-profile="{{item}}" />
+  </view>
+</view>

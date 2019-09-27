@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "nav-bar": "/components/navbar/navbar",
+    "tab-bar": "/components/tabbar/tabbar",
+    "auth-modal": "/components/authmodal/authmodal"
+  }
+}

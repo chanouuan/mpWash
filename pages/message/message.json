@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "车秘洗车",
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "nav-bar": "/components/navbar/navbar"
+  }
+}

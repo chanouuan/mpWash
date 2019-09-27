@@ -1,0 +1,181 @@
+/* pages/license/license.wxss */
+page{
+  background-color: #fff
+}
+.add_car_num {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*车牌号*/
+
+.carnum {
+  display: flex;
+  justify-content: center;
+}
+
+.enter-text {
+  font-size: 34rpx;
+  text-align: center;
+  font-weight: normal;
+  margin-top: 80rpx;
+}
+
+.carnum-item {
+  position: relative;
+  width: 80rpx;
+  height: 80rpx;
+  margin: 0 4rpx;
+  border: 1px solid #d6d6d6;
+  float: left;
+  border-radius: 10rpx;
+  line-height: 80rpx;
+  text-align: center;
+}
+
+.new-energy {
+  position: absolute;
+  font-size: 20rpx;
+  top: -39rpx;
+  width: 60rpx;
+  right: -11rpx;
+  background: #fff;
+  height: 51rpx;
+  
+}
+.new-active{
+  color:#5BDE82
+}
+
+.active {
+  border: 1px solid #5BDE82;
+}
+
+/* 键盘 */
+
+.fl {
+  float: left;
+}
+
+.carnum {
+  text-align: center;
+  height: 88rpx;
+  margin-top: 40rpx;
+}
+
+.keyboard {
+  margin-top: 80rpx;
+}
+
+.provinces {
+  overflow: hidden;
+  width: 686rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* position: absolute;
+	bottom: 0;
+	left: 0;
+	z-index: 10000; */
+}
+
+.pro-li {
+  font-size: 32rpx;
+  color: #353535;
+  height: 72rpx;
+  width: 72rpx;
+  line-height: 72rpx;
+  margin: 10rpx 12rpx;
+  text-align: center;
+  background-color: #eee;
+  border-radius: 5rpx;
+  box-shadow: 0 1rpx 2rpx 0 #ccd2e3;
+}
+
+.key-active {
+  background:  linear-gradient(90deg, rgba(91, 222, 130, 1), rgba(31, 211, 145, 1));
+}
+
+/* .provinces .pro-li:nth-child(11),
+.provinces .pro-li:nth-child(20),
+.provinces .pro-li:nth-child(29){
+  margin-left: 48rpx
+}
+.keyNums .pro-li:nth-child(11),
+.keyNums .pro-li:nth-child(20){
+  margin-left: 48rpx
+} */
+
+.pro-close {
+  width: 100rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  font-size: 32rpx;
+  text-align: center;
+  background-color: #fff;
+  border: 2rpx solid #ddd;
+  margin: 5rpx;
+}
+
+.pro-del {
+  width: 72rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  font-size: 32rpx;
+  text-align: center;
+  background-color: #fff;
+  border: 2rpx solid #ddd;
+  margin: 5rpx;
+}
+
+.keyNums {
+  overflow: hidden;
+  width: 686rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* position: absolute;
+	bottom: 0;
+	left: 0;
+	z-index: 10000; */
+}
+
+.pro-ok {
+  width: 100rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  font-size: 32rpx;
+  text-align: center;
+  background-color: #fff;
+  border: 2rpx solid #ddd;
+  margin: 5rpx;
+  /* margin-left: 35%; */
+}
+
+.pro-d {
+  width: 72rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  font-size: 32rpx;
+  text-align: center;
+  background-color: #fff;
+  border: 2rpx solid #ddd;
+  margin: 5rpx;
+}
+
+.keyNums .bot .kb-del {
+  margin-left: 12rpx;
+}
+
+.keyNums .bot .kb-icon {
+  width: 72rpx;
+  height: 72rpx;
+  color: #353535;
+  background: #ddd;
+  text-align: center;
+  box-shadow: 0 1rpx 2rpx 0 #ccd2e3;
+  border-radius: 5rpx;
+}
+
+

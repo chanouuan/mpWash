@@ -1,0 +1,22 @@
+<!--pages/serviceshop/serviceshop.wxml-->
+<!-- <tab-bar actTab="1"></tab-bar> -->
+<view class='order-state' data-order_id="{{act_order.id}}" wx:if="{{act_order&&act_order.status==1}}" bindtap='handleGoProfile'>等待服务</view>
+
+<view class='order-state state3' data-order_id="{{act_order.id}}" wx:if="{{act_order&&act_order.status==3}}" bindtap='handleGoProfile'>服务中</view>
+<view class='order-state state3' data-order_id="{{act_order.id}}" wx:if="{{act_order&&act_order.status==4}}" bindtap='handleGoProfile'>已完成</view>
+<view class='serviceshop' style='padding-top:{{height+44}}px'>
+  <nav-bar navbar-data='{{nvabarData}}' />
+  <view class='shop-con'>
+    <view class='tab'>
+      <view class='tab_list {{item.key==tab_act?"active":""}}' wx:key="{{index}}" data-act="{{item.key}}" wx:for="{{tabList}}" bindtap='handleTab'>{{item.value}}</view>
+    </view>
+    <view class='con' wx:if="{{tab_act==1}}">
+      <shop-card class='shop-item' wx:key="{{index}}" wx:for="{{storeList}}" shop-profile="{{item}}" />
+      <view class='no-data' wx:if="{{tab_act==1&&storeList.length<=0}}">附近洗车店待开放</view>
+    </view>
+    <view class='con' wx:else>
+      <shop-card class='shop-item' wx:key="{{index}}" wx:for="{{machineList}}" shop-profile="{{item}}" />
+      <view class='no-data' wx:if="{{tab_act==2&&machineList.length<=0}}">附近洗车机待开放</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "nav-bar": "/components/navbar/navbar",
+    "tab-bar": "/components/tabbar/tabbar",
+    "shop-card": "/components/shopcard/shopcard"
+  }
+}

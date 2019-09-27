@@ -1,0 +1,28 @@
+<!--pages/about/about.wxml-->
+<view class='about' style="padding-top:{{height+44}}px">
+  <nav-bar navbar-data="{{navbarData}}" />
+  <view class='card-wrap'>
+    <view class='card'>
+      <view class="logo">
+      <image src='../../images/logo.png'></image>
+      </view>
+      <view class='connect'>
+        <view class='title'>联系我们</view>
+        <view class='connect-list'>
+          <view class='item'>
+            <view class='left'>商务合作：</view>
+            <view class='right'>gz@chemi.ren</view>
+          </view>
+           <view class='item'>
+            <view class='left'>加盟热线：</view>
+            <view class='right'>400-888-3126</view>
+          </view>
+           <view class='item'>
+            <view class='left'>公司地址：</view>
+            <view class='right'>贵阳市观山湖区摩根中心B栋16楼</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

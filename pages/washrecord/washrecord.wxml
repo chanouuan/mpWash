@@ -1,0 +1,63 @@
+<!--pages/washrecord/washrecord.wxml-->
+  <nav-bar navbar-data="{{navbarData}}" />
+
+<view class='washrecord' style="padding-top:{{height+40}}px" wx:if='{{pageFlag}}'>
+  <view class='record-con'>
+    <view class='record' wx:key="{{index}}" wx:for="{{recordList}}">
+      <view class='head'>
+        <view class='head-left'>{{item.update_time}}</view>
+        <view class='head-right' wx:if="{{item.status==-1}}" style="color:#999">已取消</view>
+        <view class='head-right' wx:if="{{item.status==5}}">已完成</view>
+
+      </view>
+      <view class='list'>
+        <view class='item'>
+          <view class='item-left'>订单号：</view>
+          <view class='item-right'>{{item.order_code}}</view>
+        </view>
+        <view class='item'>
+          <view class='item-left'>服务网点：</view>
+          <view class='item-right'>{{item.store_name}}</view>
+        </view>
+         <view class='item' wx:if='{{item.order_time}}'>
+          <view class='item-left'>取车时间：</view>
+          <view class='item-right'>{{item.order_time}}</view>
+        </view>
+        <!-- <view class='item'>
+          <view class='item-left'>商品：</view>
+          <view class='item-right'>{{item.order_type=='parkwash'?"停车场洗车":"自助洗车"}}</view>
+        </view> -->
+        <view class='item' wx:if="{{item.order_type=='parkwash'}}">
+          <view class='item-left'>套餐：</view>
+          <view class='item-right'>{{item.items[0].name}}</view>
+        </view>
+        <view class='item' wx:if="{{item.order_type=='parkwash'}}">
+          <view class='item-left'>车牌号：</view>
+          <view class='item-right'>{{item.car_number}}</view>
+        </view>
+        <view class='item' wx:if="{{item.order_type=='parkwash'}}">
+          <view class='item-left'>车型：</view>
+          <view class='item-right'>{{item.brand_name}} {{item.car_type_name}}</view>
+        </view>
+        <view class='item' wx:if="{{item.order_type=='parkwash'}}">
+          <view class='item-left'>车位号：</view>
+          <view class='item-right'>{{item.area_floor}}-{{item.area_name}}-{{item.place}}</view>
+        </view>
+        <view class='item'>
+          <view class='item-left'>本次支付：</view>
+          <view class='item-right'>
+            <text style="color:#FF7000">{{item.pay/100}}</text>元</view>
+        </view>
+        <view class='item'>
+          <view class='item-left'>支付方式：</view>
+          <view class='item-right'>{{item.payway}}</view>
+        </view>
+         <!-- <view class='item' wx:if="{{item.order_type=='xc'}}">
+          <view class='item-left'>退款：</view>
+          <view class='item-right'>{{item.refundpay}}元</view>
+        </view> -->
+      </view>
+    </view>
+  </view>
+  <view class='no-data' wx:if="{{recordList.length<=0}}">暂无洗车记录</view>
+</view>

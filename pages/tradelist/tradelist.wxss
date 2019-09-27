@@ -1,0 +1,26 @@
+/* pages/tradelist/tradelist.wxss */
+.list-item{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28rpx 24rpx;
+  background: #fff;
+  border-bottom: 1rpx solid #F2F2F2
+}
+.list-item.left{
+  display: flex;
+  flex-direction: column;
+}
+.list-item .left .left-top{
+  font-size:32rpx;
+  color:#333;
+}
+.list-item .left .left-bot{
+  color:#666;
+  font-size:22rpx;
+  margin-top:10rpx
+}
+.list-item .right{
+  color:#FF7000
+}

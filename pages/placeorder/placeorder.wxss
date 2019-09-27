@@ -1,0 +1,209 @@
+/* pages/placeorder/placeorder.wxss */
+
+/* 光标动画 */
+
+@keyframes focusAni {
+  form {
+    opacity: 1, ;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.m-focus {
+  width: 5rpx;
+  height: 32rpx;
+  background: #333;
+  animation: focusAni 1s linear infinite;
+}
+
+.placeorder {
+  padding: 0 24rpx;
+  margin-top:68rpx;
+  padding-bottom: 146rpx;
+}
+
+.head {
+  padding: 0 24rpx;
+  margin-top: 20rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  color: #333;
+  font-size: 32rpx;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 6rpx 10rpx 0px rgba(221, 243, 255, 0.05);
+  border-radius: 10rpx;
+}
+
+.pannel {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 6rpx 10rpx 0px rgba(221, 243, 255, 0.05);
+  border-radius: 10rpx;
+  margin-top: 20rpx;
+}
+
+.pannel-head {
+  display: flex;
+  flex-direction: row;
+  padding: 24rpx;
+  align-items: center;
+  font-size: 28rpx;
+  color: #666;
+  justify-content: space-between;
+}
+
+.pannel-head-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.pannel-head-right {
+  color: #999;
+  font-size: 24rpx;
+}
+
+.add-btn {
+  color: #36b9fd;
+  font-size: 24rpx;
+  font-weight: 500;
+  height: 42rpx;
+  line-height: 42rpx
+}
+
+.step-num {
+  width: 30rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  text-align: center;
+  border-radius: 50%;
+  background: #1fd39a;
+  color: #fff;
+  margin-right: 15rpx;
+}
+
+.pannel-item {
+  display: flex;
+  flex-direction: row;
+  padding: 24rpx;
+  align-items: center;
+  font-size: 28rpx;
+  color: #333;
+  justify-content: space-between;
+  border-top: 1rpx solid #f2f2f2;
+}
+
+.item-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.item-name input {
+  text-align: right;
+}
+
+.item-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.car-profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.license-num {
+  color: #333;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.vip {
+  width: 60rpx;
+  height: 30rpx;
+  text-align: center;
+  border: 1rpx solid #1fd39a;
+  border-radius: 15rpx;
+  line-height: 30rpx;
+  color: #1fd39a;
+  font-weight: bold;
+  font-size: 24rpx;
+  font-style: italic;
+  margin-right: 5rpx;
+  margin-left: 14rpx;
+}
+
+.icon-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.recharge-con {
+  position: fixed;
+  padding: 0 48rpx;
+  font-size: 24rpx;
+  font-weight: 500;
+  color: #333;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 68rpx;
+  background:linear-gradient(45deg,rgba(91,222,130,.10),rgba(31,211,144,.10));
+  width: 100%;
+  box-sizing: border-box;
+}
+.re-left{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.btn-wrap {
+  width: 100%;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 20rpx 48rpx;
+  background: rgba(255, 255, 255, 1);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-shadow: 0px -6rpx 10rpx 0px rgba(221, 243, 255, 0.3);
+}
+
+.money {
+  color: #ff7000;
+  font-size: 48rpx;
+  font-weight: 500;
+}
+
+.pay-btn {
+  width: 288rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #fff;
+  background: linear-gradient(45deg, rgba(91, 222, 130, 1), rgba(31, 211, 144, 1));
+  border-radius: 10rpx;
+  font-weight: 500;
+}
+
+button {
+  margin: 0;
+  border: none;
+}

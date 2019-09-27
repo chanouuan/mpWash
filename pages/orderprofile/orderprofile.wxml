@@ -1,0 +1,117 @@
+<!--pages/orderprofile/orderprofile.wxml-->
+<!-- 警告弹窗 -->
+<!-- <view class='modal warn-modal' wx:if="{{warnFlag}}">
+  <view class='box'>
+    <view class='box-close' bindtap='handleCloseWarnMoadl'>
+      <icon class='iconfont icon-cuowu' style='color:#fff'></icon>
+    </view>
+    <view class='image'>
+      <image src='https://betaparkwash.chemi.ren/static/img/wash_warning.png'></image>
+    </view>
+  </view>
+</view> -->
+
+<!-- 顶部nav -->
+<nav-bar navbar-data='{{navbarData}}'></nav-bar>
+<!-- 车位号弹窗 -->
+<view class='modal place-modal' wx:if="{{placeFlag}}">
+  <view class='box'>
+    <view class='box-close' bindtap='handleClosePlaceMoadl'>
+      <icon class='iconfont icon-guanbi1' style='display:flex'></icon>
+    </view>
+    <view class='box-head'>
+      <view class='head-title'>商家已接单</view>
+      <view class='biezhu'>请填写您的具体车位号</view>
+    </view>
+    <view class="card">
+      <view class="card-item">
+        <view class='item-left'>车位区域</view>
+        <view class='item-right'>
+          <picker bindchange='handleSelectArea' style='color:{{areainfo?"#333":"#999"}}' value="{{index}}" range-key='allname' range='{{areaList}}'>
+            {{areainfo?areainfo.allname:"请选择停车场区域"}}
+          </picker>
+          <icon class="iconfont icon-qianjin" style='font-size:24rpx;color:#999;display:flex;margin-left:10rpx'></icon>
+        </view>
+      </view>
+      <view class="card-item">
+        <view class='item-left'>车位号</view>
+        <input class='item-right'   placeholder='请填写车位号'  bindinput='handleParkNum'></input>
+      </view>
+    </view>
+    <view class='btn-place' bindtap='handleSubmitPlace'>提交</view>
+  </view>
+</view>
+<view class='orderprofile' style="padding-top:{{height+40}}px" wx:if='{{pageFlag}}'>
+  <view class='profile'>
+    <view class='record'>
+      <view class='head'>
+        <view class='head-left'>订单状态
+          <text style='color:#5BDE82;font-size:22rpx;margin-left:86rpx' wx:if="{{orderProfile.status==-1}}">已取消</text>
+          <text style='color:#5BDE82;font-size:22rpx;margin-left:86rpx' wx:if="{{orderProfile.status==1}}">等待服务</text>
+          <text style='color:#5BDE82;font-size:22rpx;margin-left:86rpx' wx:if="{{orderProfile.status==3}}">服务中</text>
+          <text style='color:#5BDE82;font-size:22rpx;margin-left:86rpx' wx:if="{{orderProfile.status==4}}">已完成</text>
+        </view>
+        <view class='head-right' wx:if="{{orderProfile.status==1}}" bindtap='handleCancelOrder'>取消订单</view>
+         <view class='head-right wash_on' wx:if="{{orderProfile.status==4}}" bindtap='handleOnOrder'>确认完成</view>
+      </view>
+      <view class='list'>
+        <view class='item'>
+          <view class='item-left'>订单号：</view>
+          <view class='item-right'>{{orderProfile.order_code}}</view>
+        </view>
+        <view class='item'>
+          <view class='item-left'>下单时间：</view>
+          <view class='item-right'>{{orderProfile.create_time}}</view>
+        </view>
+        <view class='item'>
+          <view class='item-left'>服务网点：</view>
+          <view class='item-right'>
+            <view class='park-name'>{{orderProfile.store_name}}</view>
+            <view class='con-right' bindtap='navToLocal'>
+              <view class='con-nav-icon'>
+                <image src='/images/nav.png'></image>
+              </view>
+              <view style='height:36rpx;line-height:36rpx'>导航</view>
+            </view>
+          </view>
+        </view>
+        <view class='item'>
+          <view class='item-left'>取车时间：</view>
+          <view class='item-right'>{{orderProfile.order_time}}</view>
+        </view>
+        <view class='item'>
+          <view class='item-left'>洗车套餐：</view>
+          <view class='item-right' >{{orderProfile.items[0].name}}</view>
+        </view>
+        <view class='item'>
+          <view class='item-left'>车牌号：</view>
+          <view class='item-right' style='font-weight:bold;font-size:32rpx;'>{{orderProfile.car_number}}</view>
+        </view>
+        <view class='item'>
+          <view class='item-left'>车型：</view>
+          <view class='item-right'>{{orderProfile.brand_name}} {{orderProfile.car_type_name}}</view>
+        </view>
+        <view class='item' wx:if="{{orderProfile.status==1}}">
+          <view class='item-left'>车位号：</view>
+          <view class='item-right' wx:if="{{orderProfile.place}}" bindtap='handleShowPlaceModal'>{{orderProfile.area_floor}}-{{orderProfile.area_name}}-{{ orderProfile.place}}</view>
+          <view class='item-right' style="color:#FF3636" bindtap='handleShowPlaceModal' wx:else>未填写</view>
+        </view>
+         <view class='item' wx:if="{{orderProfile.status!==1}}">
+          <view class='item-left'>车位号：</view>
+          <view class='item-right' wx:if="{{orderProfile.place}}" >{{orderProfile.area_floor}} {{ orderProfile.place}}</view>
+          <view class='item-right' style="color:#999"  wx:else>未填写</view>
+        </view>
+        
+        <view class='item'>
+          <view class='item-left'>本次支付：</view>
+          <view class='item-right'>
+            {{orderProfile.pay/100}} 元</view>
+        </view>
+        <view class='item'>
+          <view class='item-left'>支付方式：</view>
+          <view class='item-right'>{{orderProfile.payway}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

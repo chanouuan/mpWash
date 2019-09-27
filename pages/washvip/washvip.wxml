@@ -1,0 +1,80 @@
+<!--pages/washvip/washvip.wxml-->
+<view class='washvip' style="padding-top:{{height+44}}px;padding-bottom:108rpx">
+  <nav-bar navbar-data="{{navbarData}}" goPath='mine'/>
+  <!-- 顶部卡包入口 -->
+  <view class='enter-card' style='top:{{height+44}}px' bindtap='handleGoPackage'>
+    <view class='enter-left'>
+      <icon class='iconfont icon-fuwubangzhu' style='display:flex;font-size:28rpx;color:#1FD39A;margin-right:10rpx'></icon>洗车
+      <text style='font-style:italic'>VIP</text>让您天天开新车</view>
+    <view class='enter-right'>查看我的卡
+      <icon class='iconfont icon-qianjin' style='display:flex;font-size:20rpx'></icon>
+    </view>
+  </view>
+  <!-- 主要内容 -->
+  <view class='vip-con'>
+    <view class='vip-card'>
+      <view class='card'>
+        <image src='https://parkwash.chemi.ren/static/img/vip_3.png'></image>
+      </view>
+      <view class='price-list'>
+        <view class='list-item {{item.id==selectedId?"selected-item":""}}' wx:for="{{cardList}}" wx:key='{{index}}' data-card="{{item}}" bindtap='handleSlectedCard'>
+          <view class='item-top'>{{item.duration}}畅洗</view>
+          <view class='item-bot'>{{item.price/100}}元</view>
+        </view>
+      </view>
+    </view>
+    <view class='license-card' bindtap='handleSelectedCar'>
+      <view class='license-head'>
+        <view class='head-left'>选择绑定车辆</view>
+        <view class='go_license'>
+          <icon class='iconfont icon-qianjin' style='display:flex;color:#666'></icon>
+        </view>
+      </view>
+      <view class='license-con' wx:if="{{carinfo}}">
+        <view class='license-top'>车牌号：
+          <text style='color:#333;font-size:36rpx;font-weight:bold'>{{carinfo.car_number}}</text>
+        </view>
+        <view class='license-bot'>
+          <view class='bot-left license-top'>品牌：
+            <text style='color:#333;font-size:28rpx;'>{{carinfo.brand_name}}</text>
+          </view>
+          <view class='bot-right license-top'>车系：
+            <text style='color:#333;font-size:28rpx'>{{carinfo.series_name}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='buy-know'>
+      <view class='know-head'>购买须知</view>
+      <view class='know-con'>
+        1、每位用户只能开通一辆车的VIP，不可解绑车辆，不可转赠他人，洗车时会核对用户车辆信息
+      </view>
+      <view class='know-con'>
+        2、VIP套餐有效期为30天，成功开通ⅥP后，产生的费用不予退还；
+      </view>
+      <view class='know-con'>
+        3、每天免费洗车1次，超过预约规定时间未进场或未正确停放车辆，专员将提前联系用户调整车位或取消订单。
+
+      </view>
+      
+      <view class='know-con'>
+        4、若账户中存在正在使用中的VIP套餐，则当前不可开通其它车辆VIP；
+
+
+      </view>
+      <view class='know-con'>
+        5、已开通ⅥP套餐服务的用户，可在【我的】页面，头像正下方查看特权有效时间；
+
+      </view>
+      <view class='know-con'>
+        6、仅限贵阳市使用。
+      </view>
+    </view>
+  </view>
+  <view class='bottom'>
+    <view class='all'>共计：
+      <text style='color:#FF7000;font-size:48rpx'>{{money/100}}</text>元
+    </view>
+    <view class='recharge-btn' bindtap='handleBuyVip'>立即购买</view>
+  </view>
+</view>

@@ -1,0 +1,88 @@
+<!--pages/index/index.wxml-->
+
+<!-- 顶部nav -->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<!-- 内容 -->
+<view class='index' style='padding-top:{{height+40}}px'>
+  <view class='index-con'>
+    <view class='top' style='top:{{height+40}}px' wx:if='{{pageFlag}}'>
+      <view class='avatar' bindtap='handleGoMine' wx:if='{{!listFlag}}'>
+        <view class='ava-wrap'>
+          <open-data class='ava-img' type="userAvatarUrl"></open-data>
+        </view>
+        <view class='c-divider'></view>
+      </view>
+      <view class='search-bar-wrap' bindtap='goSearch'>
+        <view class='search-bar'>
+          <!-- <input class='iconfont' input-placeholder='iconfont icon-search' focus='{{listFlag}}' wx:if="{{listFlag}}"></input> -->
+          <view class='_placeholder'>
+            <icon class='iconfont icon-search' style="display:flex;color:#5BDE82;margin-right:8rpx"></icon>
+            搜索
+          </view>
+        </view>
+      </view>
+      <!-- 切换列表/地图 -->
+      <!-- <view class='right' bindtap='handleToggleStore'>
+        <view class='c-divider'></view>
+        <image src='{{listFlag?"../../images/check_map.png":"../../images/check_list.png"}}'></image>
+      </view> -->
+    </view>
+    <!-- <view class='store-list' wx:if='{{listFlag&&markers.length>0}}'>
+      <shop-card class='shop-item' wx:key="{{index}}" wx:for="{{storeList}}" shop-profile="{{item}}" />
+    </view> -->
+    <!-- <view class='no-data' wx:elif="{{listFlag&&markers.length<=0}}">当前位置附近暂无洗车店</view> -->
+    <view class='map-wrap' >
+
+      <map id='map' scale="15" latitude='{{latitude}}' markers="{{markers}}" longitude='{{longitude}}' show-location='true' bindregionchange='getCenterLocation' bindmarkertap='handleSetNearbyStore' >
+        <!-- 客服 -->
+        <cover-image class='custome' src='../../images/custome.png' bindtap='customeCall'></cover-image>
+        <!-- 定位 -->
+        <cover-image class='location' src='../../images/getLocation.png' bindtap='getNowLocation'></cover-image>
+        <!-- 活动 -->
+        <!-- <cover-image class='activity' src='../../images/activity.png'></cover-image> -->
+         <!-- 订单状态 -->
+        <cover-image class='activity' bindtap='handleGoOrderProfile' wx:if='{{orderinfo.status==1||orderinfo.status==3||orderinfo.status==4}}' src='../../images/state{{orderinfo.status}}.png'></cover-image>
+        <!-- 中间位置 -->
+        <cover-image class='center-location'  src='../../images/aways_location.png' ></cover-image>
+      </map>
+      <!-- <map id='map' scale="15" latitude='{{latitude}}' markers="{{markers}}" longitude='{{longitude}}' show-location='true' bindmarkertap='handleSetNearbyStore' enable-zoom='false' enable-scroll='false' wx:else> -->
+        <!-- 客服 -->
+        <!-- <cover-image class='custome' src='../../images/custome.png' bindtap='customeCall'></cover-image> -->
+        <!-- 定位 -->
+        <!-- <cover-image class='location' src='../../images/getLocation.png' bindtap='getNowLocation'></cover-image> -->
+        <!-- 活动 -->
+        <!-- <cover-image class='activity' src='../../images/activity.png'></cover-image> -->
+        <!-- <cover-image class='center-location' src='../../images/aways_location.png' wx:if="{{showDef}}"></cover-image> -->
+      <!-- </map> -->
+      <view class='bottom-card' wx:if='{{nearbyStore}}'>
+        <view class='card-left'>
+          <view class='store-name'>{{nearbyStore.store_name}}
+            <text class='building' style='font-size:24rpx' wx:if='{{nearbyStore.status==0}}'>(建设中)</text>
+          </view>
+          <view class='business-info'>
+            <view class='info-item'>
+              <text style='color:#666'>营业时间：</text>{{nearbyStore.business_hours}}
+            </view>
+            <view class='info-item'>
+              <text style='color:#666'>地址：</text> {{nearbyStore.address}}
+              <text style='font-size:24rpx'>（距离{{nearbyStore.distance}}km）</text>
+            </view>
+          </view>
+        </view>
+        <view class='card-right' wx:if='{{nearbyStore.status>0}}' bindtap='handleGoWash'>
+          <view>立即</view>
+          <view>洗车</view>
+        </view>
+        <view class='card-right no-click ' wx:else>
+          <view>立即</view>
+          <view>洗车</view>
+        </view>
+      </view>
+      
+      <view class='loading-wrap' wx:else>
+        <icon class='icon-loading'></icon>
+      </view>
+    </view>
+  </view>
+
+</view>

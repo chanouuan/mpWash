@@ -1,0 +1,30 @@
+<!--components/license/license.wxml-->
+<!--pages/addPark/addPark.wxml-->
+<!-- 车牌 -->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class='add_car_num' style="margin-top:{{height+20}}px">
+<view class='enter-text'>请输入车牌号(新能源选填)</view>
+  <view class='carnum'>
+    <view class="carnum-item {{act==index?'active':''}}" data-index="{{index}}" wx:key="this" wx:for="{{numBox}}" bindtap="changeNum" data-num="{{item}}">
+    <text class="new-energy {{act==7?'new-active':''}}" wx:if='{{index==7}}'>新能源</text>
+    {{item||""}}</view>
+  </view>
+  <view class='keyboard' catchtap='stoppropagation'>
+    <!-- 省键盘 -->
+    <view class="provinces" hidden='{{hiddenPro}}'>
+      <view class="pro-li fl {{numBox[act]==item?'key-active':''}}" wx:key="this" wx:for="{{provinceArr}}" catchtap='proTap' data-province="{{item}}">{{item}}
+      
+      </view>
+    </view>
+    <!-- 号码键盘	 -->
+    <view class="keyNums" hidden='{{hiddenStr}}'>
+      <view class="pro-li fl {{numBox[act]==item?'key-active':''}}" wx:key="this" wx:for="{{strArr}}" catchtap='strTap' data-str="{{item}}">{{item}}</view>
+      <view class="bot fl">
+        <view class='kb-icon kb-hide fl pro-li' catchtap='backSpace'>
+          <icon class='iconfont icon-shanchu'></icon>
+        </view>
+      </view>
+    </view>
+  </view>
+  <button class='add-btn' bindtap='handleNewCard'>确定</button>
+</view>

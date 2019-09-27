@@ -1,0 +1,114 @@
+<!--pages/mine/minde.wxml-->
+<!-- 保留小数点 -->
+<wxs module='Math'>
+  function fn(num, fl) {
+    var v = parseFloat(num)
+    return v.toFixed(fl)
+  }
+  module.exports = {
+    toFixed: fn
+  }
+</wxs>
+<!-- 顶部nav -->
+<nav-bar navbar-data='{{navbarData}}'></nav-bar>
+<!-- 验证手机弹窗 -->
+<auth-modal wx:if="{{authModalFlag}}" bind:closemodal="handleCloseModal" bind:bindok="handleBindOk"></auth-modal>
+<!-- 内容 -->
+<view class='mine' wx:if="{{pageFlag}}">
+  <view class='top-bg'>
+    <view class='ava-wrap' wx:if="{{userinfo.telephone}}">
+      <open-data class='avatar' type="userAvatarUrl"></open-data>
+    </view>
+    <view class='def-ava' wx:if="{{!userinfo.telephone}}" bindtap="bindPhone">
+      <icon class='iconfont icon-touxiang1' style='color:#fff;font-size:90rpx'></icon>
+    </view>
+
+    <view class='bind-btn' wx:if="{{userinfo.telephone}}">{{userinfo.telephone}}</view>
+    <view class='bind-btn' wx:if="{{!userinfo.telephone}}" bindtap="bindPhone">登录后更精彩</view>
+    <!-- <view class='user-vip' wx:if='{{firstVipFlag!==0&&tel}}'>
+      <view class='vip-icon {{firstVipFlag==1?"":"overtime-icon"}}'>VIP</view>
+      <view class='vip_end_time {{firstVipFlag==1?"":"overtime-text"}}'>{{vip_time}}</view>
+    </view> -->
+    <!-- <view class='first-modal-right add_money' wx:if='{{firstVipFlag==-1}}' bindtap='handleGoBuyVip'>
+      立即续费
+      <icon class='iconfont icon-qianjin' style='display:flex;color:#fff;font-size:26rpx;margin-top:3rpx'></icon>
+    </view> -->
+  </view>
+  <!-- <view class='message' style="top:{{height+2}}px;left:24rpx;" bindtap='handleOpenMessage'>
+    <icon class='iconfont icon-xinxi1' style='color:#fff;font-size:41rpx;'></icon>
+  </view> -->
+  <view class='shelter'></view>
+  <view class='first-modal' wx:if="{{userinfo&&userinfo.money<=0}}"  bindtap='handleCharge'>
+    <view class='first-modal-left'>余额充值活动</view>
+    <view class='first-modal-right'>
+      新客特惠
+      <icon class='iconfont icon-qianjin' style='display:flex;color:#fff;font-size:26rpx;margin-top:3rpx'></icon>
+    </view>
+  </view>
+  <view class='con-card {{userinfo.telephone?"":"no-login"}}'>
+    <view class='money-card' wx:if="{{userinfo.telephone}}">
+      <view class='balance' bindtap='handleCharge'>
+        <view class='icon-wrap'>
+          <icon class='iconfont icon-cp-balance' style='color:#5BDE82;font-size:40rpx;display:flex'></icon>
+        </view>
+        <view class='desc'>余额{{Math.toFixed(userinfo.money/100,2)}}元</view>
+      </view>
+      <view class='coupon' bindtap='handleLookCoupon'>
+        <view class='icon-wrap '>
+          <icon class='iconfont icon-youhuiquan2' style='color:#36B9FD;font-size:40rpx;display:flex'></icon>
+        </view>
+        <view class='desc'>优惠券</view>
+      </view>
+    </view>
+    <view class='profile-card'>
+      <view class='list'  wx:if="{{userinfo.telephone}}">
+        <!-- <view class='item' bindtap='handleGoBuyVip'>
+          <view class='item-iconwrap'>
+            <icon class='iconfont icon-weibiaoti-_huaban' style='font-size:48rpx;color:#FF7000;display:flex'></icon>
+          </view>
+          <view class='item-desc'>洗车VIP</view>
+        </view> -->
+        <view class='item' bindtap='handleWashRecord'  >
+          <view class='item-iconwrap'>
+            <icon class='iconfont icon-weibiaoti--' style='font-size:48rpx;color:#36B9FD;display:flex'></icon>
+          </view>
+          <view class='item-desc'>洗车记录</view>
+        </view>
+        <view class='item' bindtap='handleCarMange'>
+          <view class='item-iconwrap'>
+            <icon class='iconfont icon-weibiaoti--4' style='font-size:48rpx;color:#36B9FD;display:flex'></icon>
+          </view>
+          <view class='item-desc'>车辆管理</view>
+        </view>
+        <view class='item' bindtap='handleAbout'>
+          <view class='item-iconwrap'>
+            <icon class='iconfont icon-weibiaoti--5' style='font-size:48rpx;color:#1FD390;display:flex'></icon>
+          </view>
+          <view class='item-desc'>关于我们</view>
+        </view>
+      </view>
+      <view class='list' wx:if="{{userinfo.telephone}}">
+      <view class='item' bindtap='customeCall'>
+          <view class='item-iconwrap'>
+            <icon class='iconfont icon-weibiaoti--3' style='font-size:48rpx;color:#36B9FD;display:flex'></icon>
+          </view>
+          <view class='item-desc'>客服</view>
+        </view>
+      </view>
+      <view class='list no-login-list' wx:if="{{!userinfo.telephone}}">
+       <view class='item' bindtap='handleAbout'>
+          <view class='item-iconwrap'>
+            <icon class='iconfont icon-weibiaoti--5' style='font-size:48rpx;color:#1FD390;display:flex'></icon>
+          </view>
+          <view class='item-desc'>关于我们</view>
+        </view>
+        <view class='item' bindtap='customeCall'>
+          <view class='item-iconwrap'>
+            <icon class='iconfont icon-weibiaoti--3' style='font-size:48rpx;color:#36B9FD;display:flex'></icon>
+          </view>
+          <view class='item-desc'>客服</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

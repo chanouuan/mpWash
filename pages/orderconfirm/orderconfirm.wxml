@@ -1,0 +1,168 @@
+<!--pages/orderconfirm/orderconfirm.wxml-->
+<!-- 支付弹窗 -->
+<view class='modal pay-modal' wx:if='{{payFlag}}'>
+
+  <view class='box-wrap'>
+    <view class='box'>
+      <view class='box-item' data-pay_type='cbpay' bindtap='handlePay' wx:if='{{canPay}}'>
+        <view class='left'>
+          <icon class='iconfont icon-yuezhifu' style='display:flex;color:#FF7000;margin-right:10rpx;font-size:56rpx'></icon>
+        </view>
+        <view class='right' style='margin-top:10rpx'>
+          <view class='right-top'>余额支付</view>
+          <view class='right-bot'>(车币余额
+            <text style='color:#FF7000'>{{money/100}}</text>元)</view>
+        </view>
+      </view>
+       <view class='box-item' data-pay_type='cbpay' wx:if='{{!canPay}}'>
+        <view class='left'>
+          <icon class='iconfont icon-yuezhifu' style='display:flex;color:#FF7000;margin-right:10rpx;font-size:56rpx'></icon>
+        </view>
+        <view class='right' style='margin-top:10rpx'>
+          <view class='right-top'>余额支付</view>
+          <view class='right-bot'>(车币余额
+            <text style='color:#FF7000'>{{money/100}}</text>元)</view>
+        </view>
+      </view>
+      <view class='box-item' data-pay_type='wxpaywash' bindtap='handlePay' wx:if='{{canPay}}'>
+        <view class='left'>
+          <icon class='iconfont icon-wx-pay' style='display:flex;color:#44B549;margin-right:10rpx;font-size:60rpx'></icon>
+        </view>
+        <view class='right'>
+          <view class='right-top'>微信支付</view>
+        </view>
+      </view>
+      <view class='box-item' data-pay_type='wxpaywash' wx:if='{{!canPay}}'>
+        <view class='left'>
+          <icon class='iconfont icon-wx-pay' style='display:flex;color:#44B549;margin-right:10rpx;font-size:60rpx'></icon>
+        </view>
+        <view class='right'>
+          <view class='right-top'>微信支付</view>
+        </view>
+      </view>
+      <view class='box-item' bindtap='handleClosePayMoadl'>
+
+        <view class='right' style='text-align:center'>
+          <view class='right-top'>取消</view>
+        </view>
+      </view>
+      <!-- <view class='box-item'>
+        <view class='left'>
+          <text>余额支付</text>
+        </view>
+        <view class='right'>
+          <icon style='display:flex' class='iconfont icon-yuanxingxuanzhongfill'></icon>
+        </view>
+      </view> -->
+    </view>
+  </view>
+</view>
+<!-- 警告弹窗 -->
+<view class='modal warn-modal' wx:if="{{warnFlag}}">
+  <view class='box'>
+    <view class='box-close' bindtap='handleCloseWarnMoadl'>
+      <icon class='iconfont icon-cuowu' style='color:#fff'></icon>
+    </view>
+    <view class='image'>
+      <image src='https://parkwash.chemi.ren/static/img/wash_warning.png'></image>
+    </view>
+  </view>
+</view>
+<view class='orderconfirm' style="padding-top:{{height+44}}px">
+  <nav-bar navbar-data="{{navbarData}}" goPath="{{order_path}}" />
+  <view class='order-info'>
+    <view class='carinfo-wrap'  wx:if="{{carinfo}}" bindtap='handleSelectWash'>
+      <view class='carinfo' >
+        <view class='carinfo-left'>
+          <icon wx:if="{{carinfo.isdefault}}" class='iconfont icon-yuanxingxuanzhongfill' style='color:#5BDE82;display:flex;font-size:28rpx;'>
+          </icon>
+        </view>
+        <view class='carinfo-right'>
+          <view class='info-top'>
+            <view class='left-top'>
+              <text style='font-size:24rpx;color:#666'>车牌号：</text>
+                <text>{{carinfo.car_number}}</text>
+          <view class='vip' wx:if="{{carinfo.isvip>0}}">VIP</view>
+              </view>
+            <view class='top-right'>
+              <icon class='iconfont icon-qianjin' style='color:#AAA;font-size:24rpx;display:flex'></icon>
+            </view>
+          </view>
+          <view class='info-bot'>
+            <view class='bot-left car-l'>
+              <text style='font-size:24rpx;color:#666'>品牌：</text>{{carinfo.brand_name}}
+            </view>
+            <view class='bot-left car-l'>
+              <text style='font-size:24rpx;color:#666'>车系：</text>{{carinfo.series_name}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:else class='carinfo-wrap' bindtap='handleSelectWash'>
+      <view class='carinfo'>暂无车辆，请点击添加车辆</view>
+    </view>
+    <view class="card">
+      <view class="card-item">
+        <view class='item-left'>车位区域</view>
+        <view class='item-right'>
+          <picker bindchange='handleSelectArea' value="{{index}}" range-key='allname' range='{{areaList}}'>
+            {{index?areaList[index].allname:"请选择停车场区域"}}
+          </picker>
+          <icon class="iconfont icon-qianjin" style='font-size:24rpx;color:#999;display:flex;margin-left:10rpx'></icon>
+        </view>
+      </view>
+      <view class="card-item">
+        <view class='item-left'>车位号</view>
+        <input class='item-right' placeholder='请填写车位号' value='{{park_num}}' bindinput='handleParkNum'></input>
+      </view>
+    </view>
+    <view class="card">
+      <view class="card-item">
+        <view class='item-left'>服务时间</view>
+        <view class='item-right'>
+          <picker mode='multiSelector' bindcancel='handleCancelPicker' bindchange='handleSelectData' bindcolumnchange='handleSetTimeArr' value="{{dateIndex}}" range='{{datePickerData}}'>
+            <text wx:if="{{dateIndex}}">
+            <text style='margin-right:20rpx'>{{datePickerData[0][dateIndex[0]]}}</text>
+            <text>{{datePickerData[1][dateIndex[1]]}}</text>
+            </text>
+            <text wx:else>请选择服务时间</text>
+
+          </picker>
+          <icon class="iconfont icon-qianjin" style='font-size:24rpx;color:#999;display:flex;margin-left:10rpx'></icon>
+        </view>
+      </view>
+      <view class="card-item">
+        <view class='item-left'>洗车套餐</view>
+        <view class='item-right'>
+          <picker bindchange='handleSelectMeal' value="{{mealIndex}}" range-key='name' range='{{washmeal}}'>
+            {{mealIndex?washmeal[mealIndex].name:"请选择洗车套餐"}}
+          </picker>
+          <icon class="iconfont icon-qianjin" style='font-size:24rpx;color:#999;display:flex;margin-left:10rpx'></icon>
+        </view>
+      </view>
+      <view class="card-item">
+        <view class='item-left'>服务总价</view>
+        <view class='item-right '>
+        <text wx:if="{{firstorder}}" style='color:#333;font-size:24rpx;margin-right:10rpx'>首单免费</text>
+        <text wx:if="{{carinfo.isvip>0&&!firstorder}}" style='color:#333;font-size:24rpx;margin-right:10rpx'><text style='font-style:italic;'>VIP</text>免费</text>
+          <text class='{{carinfo.isvip>0||firstorder?"no_pay":""}}' style='color:#FF7000'>{{price?price/100:'--'}}</text>元</view>
+      </view>
+      <!-- <view class="card-item">
+        <view class='item-left'>服务疑问</view>
+        <view class='item-right'>
+          <icon class="iconfont icon-fuwubangzhu" style='font-size:32rpx;color:#999'></icon>
+        </view>
+      </view> -->
+    </view>
+  </view>
+  <view class='bottom'>
+    <view class='all'>共计：
+      <text style='color:#FF7000;font-size:48rpx'>{{carinfo.isvip>0||firstorder?0:price?price/100:'--'}}</text>元
+    </view>
+    <form report-submit='true' bindsubmit='handleShowPayModal' report-submit-timeout='10000'>
+      <view class='recharge-btn' wx:if='{{!vipFlag}}'>立即支付</view>
+      <button class='recharge-btn'  form-type="submit" wx:else>立即支付</button>
+    </form>
+  </view>
+</view>

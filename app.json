@@ -1,0 +1,35 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/serviceshop/serviceshop",
+    "pages/mine/mine",
+    "pages/message/message",
+    "pages/recharge/recharge",
+    "pages/carmange/carmange",
+    "pages/washrecord/washrecord",
+    "pages/carinfo/carinfo",
+    "pages/carbrand/carbrand",
+    "pages/about/about",
+    "pages/orderconfirm/orderconfirm",
+    "pages/orderprofile/orderprofile",
+    "pages/license/license",
+    "pages/tradelist/tradelist",
+    "pages/washvip/washvip",
+    "pages/cardpackage/cardpackage",
+    "pages/placeorder/placeorder",
+    "pages/searchpage/searchpage"
+  ],
+  "window": {
+    "navigationStyle": "custom"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "navigateToMiniProgramAppIdList": [
+    "wx886d0a802470c414",
+    "wxec6d9bb5e9b002dd"
+  ],
+  "sitemapLocation": "sitemap.json"
+}

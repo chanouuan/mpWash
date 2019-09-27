@@ -1,0 +1,18 @@
+<!--components/navbar/index.wxml-->
+
+<!-- <cover-view class='nav-wrap' style='padding-top:{{height}}px;' wx:if="{{navbarData.mapFlag}}">
+  <cover-view class='nav-title'>{{navbarData.title}}</cover-view>
+</cover-view> -->
+<view class='nav-wrap' style='padding-top:{{height}}px;background:{{navbarData.bgFlag?"none":"#fff"}};box-shadow:{{navbarData.bgFlag?"none":"0px 6rpx 10rpx 0px rgba(221, 243, 255, 0.3)"}}'>
+  <view class='nav-back' wx:if='{{navbarData.backFlag}}' bindtap='_navback'>
+    <icon class='iconfont icon-fanhui' style='font-size:24px;color:#333'></icon>
+  </view>
+  <view class='nav-back' wx:if='{{navbarData.homeFlag}}' bindtap='_navback'>
+    <icon class='iconfont icon-home' style='font-size:24px;color:#fff'></icon>
+  </view>
+  <view class='nav-title'>{{navbarData.title}}</view>
+</view>
+
+
+
+

@@ -1,0 +1,7 @@
+{
+ "enablePullDownRefresh": true,
+  "usingComponents": {
+    "nav-bar": "/components/navbar/navbar",
+    "shop-card":"/components/shopcard/shopcard"
+  }
+}

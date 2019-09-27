@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "nav-bar": "/components/navbar/navbar",
+    "auth-modal": "/components/authmodal/authmodal",
+    "keyboard":"/components/keyboard/keyboard"
+  }
+}

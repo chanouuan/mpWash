@@ -1,0 +1,44 @@
+<!--pages/carinfo/carinfo.wxml-->
+<!-- 键盘 -->
+<keyboard wx:if='{{keyboardFlag}}' bind:setlicense="handleSetLicense" bind:closeBoard="handleCloseKeyboard" licenseList="{{licenseList}}" />
+<!-- 顶部nav -->
+<nav-bar navbar-data='{{navbarData}}'></nav-bar>
+<!-- 内容 -->
+<view class='carinfo' style="padding-top:{{height+40}}px" bindtap='handleCloseKeyboard'>
+  <view class='carinfo-con'>
+    <view class='car_card' data-colseflag='true' catchtap='handleShowKeyboard'>
+      <view class='left'>车牌号</view>
+      <view class='right' >
+      
+       <view class='name' style='color:{{car_number?"#333":"#666"}}'>{{car_number?car_number:'请填写车牌号'}}</view>
+        <view class='m-focus' wx:if='{{keyboardFlag}}'></view>
+        <view class='icon-wrap'>
+          <icon class='iconfont icon-qianjin' style='color:#666;font-size:30rpx;display:flex'></icon>
+        </view>
+      </view>
+    </view>
+    <view class='car-array'>
+        <view class='car_card'  bindtap="handleSelectCarBrand">
+          <view class='left'>品牌</view>
+          <view class='right'>
+             <view class='name' style='color:{{brand_info?"#333":"#999"}}'>{{brand_info?brand_info.name:'请选择车品牌'}}</view>
+            <view class='icon-wrap'>
+              <icon class='iconfont icon-qianjin' style='color:#666;font-size:30rpx;display:flex'></icon>
+            </view>
+          </view>
+        </view>
+      <picker  value="{{seriesIndex||''}}" range='{{carTypeList}}'  bindchange='handleSelectCarType' range-key='name'>
+        <view class='car_card'>
+          <view class='left'>车型</view>
+          <view class='right'>
+          <view class='name' style='color:{{carTypeInfo?"#333":"#999"}}'>{{carTypeInfo?carTypeInfo.name:'请选择车型号'}}</view>
+            <view class='icon-wrap'>
+              <icon class='iconfont icon-qianjin' style='color:#666;font-size:30rpx;display:flex'></icon>
+            </view>
+          </view>
+        </view>
+      </picker>
+    </view>
+  </view>
+  <view class='add-btn' bindtap='handleSubmitAddLicense'>确认{{carinfo?'编辑':'新增'}}</view>
+</view>

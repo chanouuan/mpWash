@@ -1,0 +1,14 @@
+<!--pages/cardpackage/cardpackage.wxml-->
+<view class='cardpackage' style="padding-top:{{height+44}}px">
+  <nav-bar navbar-data="{{navbarData}}" />
+  <view class='had_buy_card'>
+    <vip-card wx:if="{{myCardList&&myCardList.length>0}}" binddeletecard="handleDeleteVip" wx:for="{{myCardList}}" wx:key="{{index}}" card-info='{{item}}' tel="{{tel}}"/>
+    <view class='no-card' wx:if="{{myCardList&&myCardList.length<=0}}">
+      <image src='https://parkwash.chemi.ren/static/img/vip_2.png'></image>
+      <view class='text'>
+        您没有购买任何VIP卡
+      </view>
+    </view>
+  </view>
+  <view class='buy-btn' bindtap='handleGoBack' wx:if="{{myCardList.length<=0}}">立即购买</view>
+</view>

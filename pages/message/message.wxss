@@ -1,0 +1,32 @@
+/* pages/message/message.wxss */
+
+.con {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 24rpx;
+}
+
+.msg-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 43rpx;
+  
+}
+
+.time {
+  font-size: 26rpx;
+  color: #999;
+  font-weight: 500;
+}
+
+.msg-con {
+  margin-top: 24rpx;
+  padding: 50rpx 24rpx;
+  background: #fff;
+  color: #333333;
+  font-size: 26rpx;
+  box-shadow: 0px 6px 10px 0px rgba(221, 243, 255, 0.05);
+  border-radius: 10px;
+}

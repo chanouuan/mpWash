@@ -1,0 +1,16 @@
+<!--pages/tradelist/tradelist.wxml-->
+<!-- 顶部nav -->
+<nav-bar navbar-data='{{navbarData}}'></nav-bar>
+<!-- 内容 -->
+<view class='tradelist' wx:if='{{tradeList}}' style='padding-top:{{height+44}}px'>
+  <view class='trade-con' >
+    <view class='list-item' wx:key="{{index}}" wx:for="{{tradeList}}">
+      <view class='left'>
+        <view class='left-top'>{{item.title}}</view>
+        <view class='left-bot'>{{item.create_time}}</view>
+      </view>
+      <view class='right'>{{item.mark}}{{item.money/100}}</view>
+    </view>
+  </view>
+  <view class='no-data' wx:if="{{tradeList.length<=0}}">暂无消费记录</view>
+</view>

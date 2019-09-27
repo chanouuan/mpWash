@@ -1,0 +1,80 @@
+/* components/carinfo/carinfo.wxss */
+@import "../../iconfont.wxss";
+.carinfo-wrap{
+  padding: 10rpx;
+  background: #fff;
+  border-radius:10rpx;
+   margin-top: 20rpx;
+}
+.vip{
+   width: 60rpx;
+  height: 30rpx;
+  text-align: center;
+  border:1rpx solid #1FD39A;
+  border-radius: 15rpx;
+  line-height: 30rpx;
+  color:#1FD39A;
+  font-size:24rpx;
+  font-style: italic;
+  margin-right:5rpx;
+  margin-left:14rpx
+}
+.carinfo{
+  padding: 30rpx;
+  border:1rpx solid #1FD390;
+  border-radius:10rpx;
+  display: flex;
+  flex-direction: row;
+ 
+}
+.carinfo-left{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 50rpx;
+  width:30rpx
+}
+.carinfo-right{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.carinfo-last{
+  display: flex;
+  flex-direction: column;
+  margin-left:20rpx;
+  justify-content: space-between;
+}
+.info-top{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+
+.left-top{
+ font-size: 36rpx;
+  color:#333;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.left-bot{
+  font-size: 36rpx;
+  color:#333;
+  font-weight: bold
+}
+.info-bot{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top:45rpx;
+}
+.car-l{
+  font-size:28rpx;
+  color:#333;
+  font-weight: 500
+}

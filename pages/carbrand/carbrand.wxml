@@ -1,0 +1,51 @@
+<!--pages/carbrand/carbrand.wxml-->
+<!-- 顶部nav -->
+<nav-bar navbar-data='{{navbarData}}'></nav-bar>
+<view class='carbrand' style="padding-top:{{height+44}}px">
+  <!-- <view class='modal' wx:if="{{open}}" bindtap='handleCloseModal'>
+  </view>
+  <scroll-view scroll-y style='height:calc(100vh - {{height+44}}px)' class='car-system {{open?"side":""}}'>
+    <view class='system-item' wx:key='{{index}}' data-system_info="{{item}}" bindtap='handleSelectSystem' wx:for="{{systemList}}">
+      {{item.name}}
+    </view>
+  </scroll-view>Î -->
+  <view class='con'>
+    <view class='act_word' wx:if='{{act_word}}'>{{act_word}}</view>
+    <view class='flex '>
+      <scroll-view class="flex1" scroll-with-animation='true' enable-back-to-top='true' scroll-y="{{!open}}" scroll-into-view="id{{toView}}" style='height:calc(100vh - 102rpx)'>
+        <block wx:for='{{brandList}}' wx:key='id' wx:for-item='b'>
+          <view class='title' id='id{{b[0][0].id}}'>{{b[0][0].pinyin}}</view>
+          <view class='brand-item'>
+            <view class='item-con' wx:for='{{b[0]}}' wx:key='i' wx:for-item='n' data-brandinfo="{{n}}"  bindtap='handleSelectBrand'>
+              <image src='{{n.logo}}' class='img'></image>
+              <text>{{n.name}}</text>
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+      <view class='right-nav' >
+        <view class='nav-item' wx:for='{{brandList}}' data-word="{{item[0][0].pinyin}}" bindtap='toView' data-i='{{item[0][0].id}}' wx:key='a'>{{item[0][0].pinyin}}</view>
+      </view>
+    </view>
+
+  </view>
+  <!-- <view class='con'>
+    <view class='flex '>
+      <scroll-view class="flex1" overflow-y scroll-with-animation='true' enable-back-to-top='true'  scroll-into-view="id{{toView}}" style='height:calc(100vh - 102rpx)'>
+        <block wx:for='{{brandList}}' wx:key='id' wx:for-item='b'>
+          <view class='title' id='id{{b[0][0].id}}'>{{b[0][0].pinyin}}</view>
+          <view class='brand-item'>
+            <view class='item-con' wx:for='{{b[0]}}' wx:key='i' wx:for-item='n' data-id='{{n.id}}' data-name="{{n.name}}" bindtap='goDetail'>
+              <image src='{{n.logo}}' class='img'></image>
+              <text>{{n.name}}</text>
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+      <view class='right-nav' style='top:{{height+70}}px'>
+        <view class='nav-item' wx:for='{{brandList}}' bindtap='toView' data-i='{{item.id}}' wx:key='a'>{{item[0][0].pinyin}}</view>
+      </view>
+    </view>
+
+  </view> -->
+</view>

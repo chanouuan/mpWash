@@ -1,0 +1,14 @@
+<!--pages/message/message.wxml-->
+<view class='message' style="padding-top:{{height+44}}px">
+  <nav-bar navbar-data="{{navbarData}}" />
+  <view class='con'>
+    <view class='msg-item'>
+      <view class='time'>
+        2019-03-19 12:00
+      </view>
+      <view class='msg-con'>
+      网点，记得填写车位哦，感谢您的支持。网点，记得填写车位哦，感谢您的支持。网点，记得填写车位哦，感谢您的支持。网点，记得填写车位哦，感谢您的支持。
+      </view>
+    </view>
+  </view>
+</view>

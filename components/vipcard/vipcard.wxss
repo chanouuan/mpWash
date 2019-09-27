@@ -1,0 +1,77 @@
+/* components/vipcard/vipcard.wxss */
+@import "../../iconfont.wxss";
+.vipcard {
+  width: 702rpx;
+  height: 328rpx;
+  display: flex;
+  flex-direction: column;
+  background: url('https://parkwash.chemi.ren/static/img/vip_1.png') no-repeat;
+  background-size: cover;
+  margin-top: 20rpx;
+  overflow: hidden;
+  border-radius: 10rpx;
+  position: relative;
+}
+.vip-wrap{
+  width: 702rpx;
+  height: 328rpx;
+  border-radius: 10rpx;
+  background: rgba(255, 255, 255, .64);
+  position: absolute;
+  left: 0;
+  top:0;
+  z-index: 22
+}
+.user {
+  color: #fff;
+  font-size: 21rpx;
+  margin-top: 74rpx;
+  margin-left: 34rpx;
+}
+
+.license-num {
+  font-size: 32rpx;
+  color: #fff;
+  margin-left: 71rpx;
+  margin-top: 12rpx;
+}
+
+.end_time {
+  margin-top: 14rpx;
+  font-size: 22rpx;
+  color: #fff;
+  margin-left: 34rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.xufei-btn {
+  position: absolute;
+  width: 150rpx;
+  height: 48rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 24rpx;
+  font-size: 24rpx;
+  color: #1fd391;
+  justify-content: center;
+  left: 68rpx;
+  bottom:36rpx;
+  z-index:33
+}
+.delete-btn{
+  width: 128rpx;
+  height: 48rpx;
+  border:1rpx solid #fff;
+  border-radius: 10rpx;
+  font-size:24rpx;
+  color:#fff;
+  line-height: 48rpx;
+  text-align: center;
+  position: absolute;
+  top:30rpx;
+  right:24rpx;
+  z-index:33
+}

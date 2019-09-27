@@ -1,0 +1,170 @@
+<!--pages/placeorder/placeorder.wxml-->
+<!-- 保留小数点后几位 -->
+<wxs module='Math'>
+  function fn(num, fl) {
+    var v = parseFloat(num)
+    return v.toFixed(fl)
+  }
+  module.exports = {
+    toFixed: fn
+  }
+</wxs>
+<!-- 顶部nav -->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<!-- 验证手机弹窗 -->
+<auth-modal wx:if="{{authModalFlag}}" bind:closemodal="handleCloseModal" bind:bindok="handleBindOk"></auth-modal>
+<!-- 键盘 -->
+<keyboard wx:if='{{keyboardFlag}}' bind:setlicense="handleSetLicense" bind:closeBoard="handleCloseKeyboard" licenseList="{{licenseList}}" />
+<!-- 顶部充值条 -->
+<view class='recharge-con' style='top:{{height+40}}px' bindtap='handleGoRecharge' wx:if='{{pageFlag}}'>
+  <view class='re-left'>
+    <view class='icon-wrap'>
+      <icon class='iconfont icon-liwu' style='display:flex;color:#1FD39A;margin-right:10rpx'></icon>
+    </view>
+    <view>盛夏钜惠！充值最高送<text style='color:#FF7000;font-size:28rpx'>160</text>元！</view>
+  </view>
+  <view style='color:#FF7000' class='re-right'>去充值</view>
+</view>
+<!-- 内容 -->
+<form bindsubmit="handlePayOrder" >
+<view class='placeorder' wx:if='{{pageFlag}}' bindtap='handleCloseKeyboard' style='padding-top:{{height+40}}px'>
+  <view class='head'>{{storeinfo.store_name||storeinfo.name}}</view>
+  <view class='pannel'>
+    <view class='pannel-head'>
+      <view class='pannel-head-left' >
+        <view class='step-num'>1</view>
+        <view class='car-info'>车辆信息</view>
+      </view>
+      <view class='pannel-head-right add-btn' bindtap='handleAddCar' style='font-size:28rpx;color:#36B9FD;font-weight:500'>{{addFlag?"":"添加车辆"}}</view>
+    </view>
+    <view class='pannel-item' data-colseflag='true' wx:if='{{addFlag}}' catchtap='handleShowKeyboard'>
+      <view class='item-label'>车牌号</view>
+      <view class='item-name' style='color:{{carNumber?"#333":"#999"}}'>
+        {{carNumber?carNumber:'请填写车牌号'}}
+        <view class='m-focus' wx:if='{{keyboardFlag}}'></view>
+        <view class='icon-wrap'>
+          <icon class='iconfont icon-qianjin' style='color:#666;font-size:30rpx;display:flex'></icon>
+        </view>
+      </view>
+    </view>
+    <!-- <picker range='{{brandList}}'  bindchange='handleSelectCarBrand' range-key='name' wx:if='{{addFlag}}'>
+      <view class='pannel-item'>
+        <view class='item-label'>品牌</view>
+        <view class='item-name'>
+          <view class='name' style='color:{{brand_info?"#333":"#999"}}'>{{brand_info?brand_info.name:'请选择车辆品牌'}}</view>
+          <view class='icon-wrap'>
+            <icon class='iconfont icon-qianjin' style='color:#666;font-size:30rpx;display:flex'></icon>
+          </view>
+        </view>
+      </view>
+    </picker> -->
+     <view class="pannel-item" wx:if='{{addFlag}}'  bindtap="handleSelectCarBrand">
+      <view class='item-label'>品牌<text style='color:#999999'>(选填)</text></view>
+       <view class='item-name' >
+        <view class='name' style='color:{{brand_info?"#333":"#999"}}'>{{brand_info?brand_info.name:'请选择车品牌'}}</view>
+         <view class='icon-wrap'>
+            <icon class='iconfont icon-qianjin' style='color:#666;font-size:30rpx;display:flex'></icon>
+          </view>
+       </view>
+      
+    </view>
+    <picker wx:if='{{addFlag}}'  range='{{carTypeList}}'  bindchange='handleSelectCarType' range-key='name'>
+      <view class='pannel-item'>
+        <view class='item-label'>车型</view>
+        <view class='item-name'>
+          <view class='name' style='color:{{carTypeInfo?"#333":"#999"}}'>{{carTypeInfo?carTypeInfo.name:'请选择车型号'}}</view>
+          <view class='icon-wrap'>
+            <icon class='iconfont icon-qianjin' style='color:#666;font-size:30rpx;display:flex'></icon>
+          </view>
+        </view>
+      </view>
+    </picker>
+    <picker wx:if='{{!addFlag&&carList.length>0}}' class='picker' range="{{carList}}" range-key='car_number' bindchange='handleChangeCar' name='carport_id' value='{{carIndex}}'>
+      <view class='pannel-item'>
+        <view class='item-label'>
+          <view class='license-num'>{{car_info.car_number}}</view>
+          <!-- <view class='vip' wx:if="{{selecetCar.isvip>0}}">VIP</view> -->
+        </view>
+        <view class='item-name'>
+          <view class='car-profile'>
+            品牌：{{car_info.name}}
+          </view>
+          <view class='icon-wrap'>
+            <icon class='iconfont icon-qianjin' style='color:#666;font-size:30rpx;display:flex'></icon>
+          </view>
+        </view>
+
+      </view>
+    </picker>
+    <view class='pannel-item' wx:if='{{addFlag}}'>
+        <view class='item-label' style='font-size:28rpx;color:#333;font-weight:500' bindtap='handleCancelAdd'>取消添加</view>
+        <view class='item-name' style='font-size:28rpx;color:#36B9FD;font-weight:500' bindtap='handleAddCar'>确认添加</view>
+    </view>
+  </view>
+  <view class='pannel'>
+    <view class='pannel-head'>
+      <view class='pannel-head-left'>
+        <view class='step-num'>2</view>
+        <view class='car-info'>服务信息</view>
+      </view>
+    </view>
+  
+    <picker mode='selector' name='items' value='{{menuIndex}}' range='{{menu_list}}' bindchange='handleSelectMenu' range-key='nameprice' disabled='{{carList.length<=0?true:false}}' bindtap='handleMenu'>
+      <view class='pannel-item'>
+        <view class='item-label'>服务项目</view>
+        <view class='item-name'>
+          <view class='name' style='color:{{menuinfo?"#333":"#999"}}'>{{menuinfo?menuinfo.nameprice:'请选择服务项目'}}</view>
+          <view class='icon-wrap'>
+            <icon class='iconfont icon-qianjin' style='color:#666;font-size:30rpx;display:flex'></icon>
+          </view>
+        </view>
+      </view>
+    </picker>
+      <picker mode='multiSelector' name='pool_id' value='{{timeIndex}}' disabled='{{pool_picker_data.length>0?false:true}}' bindtap='handleTime' range='{{pool_picker_data}}' bindcolumnchange='handleSetTimeArr' bindchange='handleSelectData'>
+      <view class='pannel-item'>
+        <view class='item-label'>取车时间</view>
+        <view class='item-name'>
+          <view class='name' style='color:{{timeinfo?"#333":"#999"}}'>{{timeinfo?timeinfo.today+' '+timeinfo.start_time:'请选择取车时间'}}</view>
+          <view class='icon-wrap'>
+            <icon class='iconfont icon-qianjin' style='color:#666;font-size:30rpx;display:flex'></icon>
+          </view>
+        </view>
+      </view>
+    </picker>
+  </view>
+  <view class='pannel'>
+    <view class='pannel-head'>
+      <view class='pannel-head-left'>
+        <view class='step-num'>3</view>
+        <view class='car-info'>停车位置(选填)</view>
+      </view>
+      <view class='pannel-head-right'>车位号在车位上方哦!</view>
+    </view>
+    <picker mode='selector' name='area_id' value='{{areaIndex}}' range='{{area_list}}' bindchange='handleSelectArea' range-key='floorname'>
+      <view class='pannel-item'>
+        <view class='item-label'>区域</view>
+        <view class='item-name'>
+          <view class='name' style='color:{{areainfo?"#333":"#999"}}'>{{areainfo?areainfo.floorname:'请选择车位区域'}}</view>
+          <view class='icon-wrap'>
+            <icon class='iconfont icon-qianjin' style='color:#666;font-size:30rpx;display:flex'></icon>
+          </view>
+        </view>
+      </view>
+    </picker>
+    <view class='pannel-item'>
+      <view class='item-label'>车位号</view>
+      <view class='item-name'>
+        <input name='place'  placeholder-style="color:#999" placeholder='请填写车位号' value='{{place}}' bindinput='handleParkNum'></input>
+      </view>
+    </view>
+  </view>
+  <view class='footer'>
+
+    <view class='btn-wrap'>
+      <view class='money' style='font-size:{{menuinfo.firstorder==1?"28rpx":"48rpx"}}'>{{menuinfo?(menuinfo.firstorder==1?menuinfo.price:'￥'+menuinfo.price+' 元'):'￥ 00.00 元'}}</view>
+      <button class='pay-btn'  form-type="submit" wx:if='{{canPay}}'>立即支付</button>
+      <button class='pay-btn' wx:else >立即支付</button>
+    </view>
+  </view>
+</view>
+</form>

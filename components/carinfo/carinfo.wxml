@@ -1,0 +1,49 @@
+<!--components/carinfo/carinfo.wxml-->
+<view class='carinfo-wrap'>
+  <view class='carinfo' >
+    <view class='carinfo-right'>
+      <view class='info-top'>
+        <view class='left-top'>
+          <text style='font-size:24rpx;color:#666'>车牌号：</text>
+          <text>{{parkInfo.car_number}}</text>
+        </view>
+        <view class='top-right'  bindtap='updateLicense'>
+          <icon class='iconfont icon-bianji1' style='color:#AAA;font-size:40rpx;display:flex'></icon>
+        </view>
+      </view>
+      <view class='info-bot'>
+        <view class='bot-left car-l'>
+          <text style='font-size:24rpx;color:#666'>品牌：</text>{{parkInfo.brand_name}}
+        </view>
+        <view class='bot-left car-l'>
+          <text style='font-size:24rpx;color:#666'>车型：</text>{{parkInfo.car_type_name}}
+        </view>
+        <icon class='iconfont icon-delete' bindtap='handeleDeleteCar' style='color:#AAA;font-size:40rpx;display:flex' ></icon>
+      </view>
+    </view>
+  </view>
+  <!-- <view class='carinfo' wx:if="{{showDelete&&selectFlag}}" bindtap='handleSelected'>
+    <view class='carinfo-left' >
+      <icon wx:if="{{parkInfo.isdefault}}" class='iconfont icon-yuanxingxuanzhongfill' style='color:#5BDE82;display:flex;font-size:28rpx;'>
+      </icon>
+    </view>
+    <view class='carinfo-right' >
+      <view class='info-top'>
+        <view class='left-top'>
+          <text style='font-size:24rpx;color:#666'>车牌号：</text>
+            <text>{{parkInfo.car_number}}</text>
+          <view class='vip' wx:if="{{parkInfo.isvip>0}}">VIP</view>
+          </view>
+      </view>
+      <view class='info-bot'>
+        <view class='bot-left car-l'>
+          <text style='font-size:24rpx;color:#666'>品牌：</text>{{parkInfo.brand_name}}
+        </view>
+        <view class='bot-left car-l'>
+          <text style='font-size:24rpx;color:#666'>车系：</text>{{parkInfo.series_name}}
+        </view>
+
+      </view>
+    </view>
+  </view> -->
+</view>

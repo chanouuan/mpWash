@@ -1,0 +1,61 @@
+/* pages/washrecord/washrecord.wxss */
+.washrecord{
+  padding-bottom: 20rpx;
+}
+.record-con {
+  padding: 0 24rpx;
+}
+
+.record {
+  box-shadow: 0px 6px 10px 0px rgba(221, 243, 255, 0.05);
+  border-radius: 10rpx;
+  background: #fff;
+  margin-top: 20rpx;
+}
+
+.head {
+  padding: 35rpx 24rpx 30rpx;
+  border-bottom: 1rpx solid #eee;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.head-left {
+  color: #333;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.head-right {
+  color: #666;
+  font-weight: 500;
+  font-size: 26rpx;
+}
+
+.list {
+  padding: 12rpx 24rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  line-height: 2.5;
+}
+
+.item-left {
+  color: #666;
+  font-size: 27rpx;
+  font-weight: 500;
+}
+
+.item-right {
+  color: #333;
+  font-size: 27rpx;
+  font-weight: 500;
+}

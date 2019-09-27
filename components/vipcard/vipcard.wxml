@@ -1,0 +1,30 @@
+<!--components/vipcard/vipcard.wxml-->
+<view class='vipcard' wx:if="{{cardInfo.status==1}}">
+  <view class='user'>账户：
+    <text style='font-size:24rpx'>{{tel}}</text>
+  </view>
+  <view class='license-num'>{{cardInfo.car_number}}</view>
+  <view class='end_time'>
+    <view style='margin-left:68rpx'>到期时间</view>
+    <view style='margin-left:45rpx'>{{cardInfo.end_time}}</view>
+  </view>
+  <view class='xufei-btn' bindtap='handleGoAddVip'>立即续费
+    <icon class='iconfont icon-qianjin' style='display:flex;color:#1FD391;margin-top:3rpx;font-size:24rpx'></icon>
+  </view>
+</view>
+<view class='vipcard' wx:if="{{cardInfo.status==-1}}">
+  <view class='vip-wrap'>
+  </view>
+  <view class='user'>账户：
+    <text style='font-size:24rpx'>{{tel}}</text>
+  </view>
+  <view class='license-num'>{{cardInfo.car_number}}</view>
+  <view class='end_time'>
+    <view style='margin-left:68rpx'>到期时间</view>
+    <view>{{cardInfo.end_time}}</view>
+  </view>
+  <view class='xufei-btn' bindtap='handleGoAddVip'>立即续费
+    <icon class='iconfont icon-qianjin' style='display:flex;color:#1FD391;margin-top:3rpx;font-size:24rpx'></icon>
+  </view>
+  <view class='delete-btn' bindtap='handleDeleteCard'>删除卡片</view>
+</view>

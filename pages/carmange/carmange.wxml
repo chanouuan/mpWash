@@ -1,0 +1,11 @@
+<!--pages/carmange/carmange.wxml-->
+<!-- 顶部nav -->
+<nav-bar navbar-data='{{navbarData}}'></nav-bar>
+<view class='carmange' style="padding-top:{{height+40}}px" wx:if='{{pageFlag}}'>
+  <nav-bar navbar-data="{{navbarData}}" go-path="{{path}}" />
+  <view class='car-list' wx:if="{{licenseList.length>0}}">
+    <car-info   wx:for="{{licenseList}}" wx:key='{{index}}' parkInfo="{{item}}" binddeletecar="deleteCar" showDelete='{{true}}' selectFlag="{{selectFlag}}" />
+  </view>
+  <view class='no-data' wx:else>暂无车辆，请新增车辆</view>
+  <view class='add-btn' bindtap='handleCarProfile'>新增车辆</view>
+</view>

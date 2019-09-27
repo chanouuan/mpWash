@@ -1,0 +1,18 @@
+<!--components/tabbar/tabbar.wxml-->
+<!-- <cover-view class='tabbar' style="height:{{height+10}}px" wx:if='{{tabData.mapFlag}}'>
+  <cover-view class='tabbar-item' wx:for='{{tabList}}' wx:key='{{index}}' data-select="{{item}}" bindtap='handleCheckoutTab'> -->
+    <!-- <cover-view class='icon-wrap {{actTab==index?"act":""}}'> -->
+    <!-- <cover-image style='width:42rpx;height:42rpx' src='{{tabData.actTab==index?item.actIcon:item.defIcon}}'></cover-image> -->
+      <!-- <icon class='iconfont {{item.icon}}' style='display:flex;font-size:42rpx'></icon> -->
+    <!-- </cover-view> -->
+    <!-- <cover-view class='title {{tabData.actTab==index?"act":""}}' >{{item.name}}</cover-view>
+  </cover-view>
+</cover-view> -->
+<view class='tabbar' style="height:{{height+10}}px" wx:if='{{!tabData.mapFlag}}'>
+  <view class='tabbar-item' wx:for='{{tabList}}' wx:key='{{index}}' data-select="{{item}}" bindtap='handleCheckoutTab'>
+    <view class='icon-wrap {{actTab==index?"act":""}}'>
+      <icon class='iconfont {{item.icon}}' style='display:flex;font-size:42rpx'></icon>
+    </view>
+    <view class='title {{tabData.actTab==index?"act":""}}' >{{item.name}}</view>
+  </view>
+</view>

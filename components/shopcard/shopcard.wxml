@@ -1,0 +1,152 @@
+<!--components/shopcard/shopcard.wxml-->
+<!-- 授权弹窗 -->
+<view class='modal modal-auth' wx:if="{{authFlag}}">
+  <view class='box'>
+    <view class='title'>授权手机登录后使用洗车</view>
+    <view class='btn-list'>
+      <view class='cancel' bindtap='cancelAuth'>取消</view>
+      <button open-type="getPhoneNumber" bindgetphonenumber="confirmAuth" class='confirm'>去授权</button>
+    </view>
+  </view>
+</view>
+<!-- 开张的洗车店 -->
+<view class='box' wx:if="{{shopProfile.status==1}}">
+  <view class='box-head'>
+    <view class='head-left'>
+      <view class='name'>{{shopProfile.name}}</view>
+      <view class='sale-state'>
+        <view style='color:#5BDE82' wx:if="{{shopProfile.is_business_hour==1}}">营业中</view>
+        <view style='color:#AAA' wx:if="{{shopProfile.is_business_hour==0}}">已打烊</view>
+        <view>（已有{{shopProfile.order_count}}人下单）</view>
+      </view>
+    </view>
+    <view class='head-right' bindtap='handlePlaceOrder' wx:if="{{shopProfile.is_business_hour==1}}">
+      立即下单
+    </view>
+    <view class='head-right' style="color:#999;border-color:#ccc" wx:if="{{shopProfile.is_business_hour==0}}">
+      立即下单
+    </view>
+  </view>
+  <view class='box-con'>
+    <view class='con-left'>
+      <!-- <view class='con-item'>
+        <view class='con-label'>洗车价格：</view>
+        <view class='con-value'>
+          <view style='color:#FB692A;min-width:20rpx;text-align:center'>{{shopProfile.price/100}}</view>
+          <view>元</view>
+        </view>
+      </view> -->
+      <view class='con-item'>
+        <view class='con-label'>活动：</view>
+        <view class='con-value' style='color:#1FD39A'>
+          {{shopProfile.market}}
+        </view>
+      </view>
+      <view class='con-item'>
+        <view class='con-label'>营业时间：</view>
+        <view class='con-value'>
+          {{shopProfile.business_hours}}
+        </view>
+      </view>
+
+      <view class='con-item'>
+        <view class='con-label'>联系电话：</view>
+        <view class='con-value'>
+          {{shopProfile.tel}}
+        </view>
+      </view>
+      <view class='con-item'>
+        <view class='con-label'>地址：</view>
+        <view class='con-value'>
+          {{shopProfile.address}}(距离：{{shopProfile.distance}}km)
+        </view>
+      </view>
+    </view>
+    <view class='con-right' bindtap='navToLocal'>
+      <view class='con-nav-icon'>
+        <image src='/images/nav.png'></image>
+      </view>
+      <view style='margin-top:10rpx;color:#666;font-size:24rpx;'>导航</view>
+    </view>
+  </view>
+</view>
+<!-- 未开张的洗车店 -->
+<view class='box no_start' wx:elif="{{shopProfile.status==0}}">
+  <view class='box-head'>
+    <view class='head-left'>
+      <view class='name'>{{shopProfile.name}}</view>
+      <view class='sale-state' style='color:#AAA'>
+        建设中
+      </view>
+    </view>
+
+  </view>
+  <view class='box-con'>
+    <view class='con-left'>
+      <!-- <view class='con-item'>
+        <view class='con-label'>洗车价格：</view>
+        <view class='con-value'>
+          --
+        </view>
+      </view> -->
+      <view class='con-item'>
+        <view class='con-label'>活动：</view>
+        <view class='con-value'>
+          敬请期待
+        </view>
+      </view>
+      <view class='con-item'>
+        <view class='con-label'>地址：</view>
+        <view class='con-value'>
+          {{shopProfile.address}}(距离：{{shopProfile.distance}}km)
+        </view>
+      </view>
+    </view>
+
+  </view>
+  <view class='no-start-btn'>
+    服务店建设中</view>
+</view>
+<!-- 洗车机 -->
+<view class='box' wx:else>
+  <view class='box-head'>
+    <view class='head-left'>
+      <view class='name'>{{shopProfile.areaname}}</view>
+      <view class='sale-state'>
+        <view wx:if="{{shopProfile.use_state==0}}" style='color:#AAA'>离线</view>
+        <view wx:if="{{shopProfile.use_state==1}}" style='color:#36B9FD'>空闲</view>
+        <view wx:if="{{shopProfile.use_state==2}}" style='color:#1FD390'>使用中</view>
+        <view>（已有{{shopProfile.order_count}}人下单）</view>
+      </view>
+    </view>
+  </view>
+  <view class='box-con'>
+    <view class='con-left'>
+      <view class='con-item'>
+        <view class='con-label'>洗车价格：</view>
+        <view class='con-value'>
+          <view style='color:#FB692A;min-width:20rpx;text-align:center'>{{shopProfile.price/100}}</view>
+          <view>元/{{shopProfile.duration}}分钟</view>
+        </view>
+      </view>
+      <view class='con-item'>
+        <view class='con-label'>营业时间：</view>
+        <view class='con-value'>
+          24小时
+        </view>
+      </view>
+      <view class='con-item'>
+        <view class='con-label'>地址：</view>
+        <view class='con-value'>
+          {{shopProfile.address}}(距离：{{shopProfile.distance}}km)
+        </view>
+      </view>
+    </view>
+    <view class='con-right' bindtap='navToLocal'>
+      <view class='con-nav-icon'>
+        <image src='/images/nav.png'></image>
+      </view>
+      <view style='margin-top:10rpx;color:#666;font-size:28rpx;'>导航</view>
+    </view>
+  </view>
+</view>

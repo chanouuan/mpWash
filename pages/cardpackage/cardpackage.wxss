@@ -1,0 +1,40 @@
+/* pages/cardpackage/cardpackage.wxss */
+page{
+  background: #fff
+}
+.had_buy_card {
+  padding: 0 24rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.buy-btn {
+  width: 600rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  background: linear-gradient(135deg, rgba(91, 222, 130, 1), rgba(31, 211, 145, 1));
+  border-radius: 10rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 32rpx;
+  position: fixed;
+  bottom: 89rpx;
+  left: 50%;
+  margin-left:-300rpx;
+}
+.no-card{
+  width: 580rpx;
+  height: 435rpx;
+  position: absolute;
+  left: 50%;
+  top:375rpx;
+  margin-left: -290rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.text{
+  color:#666;
+  font-size:24rpx;
+  margin-top:30rpx;
+}
